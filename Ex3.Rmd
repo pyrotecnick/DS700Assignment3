@@ -1,0 +1,33 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+acs = read_csv("acs_ny.csv")
+head(acs)
+summary(acs)
+```
+
+```{r}
+acs$LargeIncome[acs$FamilyIncome > 150000] <- TRUE
+acs$LargeIncome[acs$FamilyIncome <= 150000] <- FALSE
+
+summary(acs$LargeIncome)
+```
+```{r}
+hist(acs$FamilyIncome)
+model <- glm(formula=LargeIncome~FamilyType+NumBedrooms+NumPeople+NumRooms+NumUnits+NumVehicles+NumWorkers+OwnRent+HouseCosts+ElectricBill+FoodStamp+Insurance, data=acs, family="binomial")
+summary(model)
+```
+
