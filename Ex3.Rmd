@@ -31,3 +31,25 @@ model <- glm(formula=LargeIncome~FamilyType+NumBedrooms+NumPeople+NumRooms+NumUn
 summary(model)
 ```
 
+```{r}
+model$coef
+intercept <- model$coef[1] # intercept
+familyMaleHead <- model$coef[2]
+familyMarried <- -model$coef[3]
+numBedrooms <- model$coef[4]
+numPeople <- model$coef[5]
+numRooms <- model$coef[6]
+unitAttached <- model$coef[7]
+unitDetached <- model$coef[8]
+numVehicles <- model$coef[9]
+numWorkers <- model$coef[10]
+owned <- model$coef[11]
+rented <- model$coef[12]
+houseCosts <- model$coef[13]
+electric <- model$coef[14]
+foodStamps <- model$coef[15]
+insurance <- model$coef[16]
+
+plot(data.frame(intercept, familyMaleHead, familyMarried, numBedrooms, numPeople, numRooms, unitAttached, unitDetached, numVehicles, numWorkers, owned, rented, houseCosts, electric, foodStamps, insurance))
+```
+
